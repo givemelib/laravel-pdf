@@ -1,3 +1,7 @@
+![PHP Composer](https://github.com/givemelib/laravel-pdf/workflows/PHP%20Composer/badge.svg?branch=master)
+
+
+
 # Laravel PDF: PDF generator for Laravel 5.2
 
 > Easily generate PDF documents from HTML right inside of Laravel using this PDF wrapper.
