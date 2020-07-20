@@ -1,0 +1,42 @@
+{
+  "name": "givemelib/laravel-pdf",
+  "description": "Laravel PDF - for generating pdf invice or documents.",
+  "license": "MIT",
+  "homepage": "http://givemelib.rf.gd",
+  "keywords": [
+        "laravel",
+        "laravel-pdf",
+        "pdf",
+        "pdf-invoice",
+        "pdf-documents",
+        "adobe"
+   ],
+  "authors": [
+    {
+      "name": "Davian Kohler",
+      "email": "givemelib@hotmail.com",
+      "homepage": "http://givemelib.rf.gd"
+    }
+  ],
+  "extra": {
+        "laravel": {
+            "providers": [
+                "GiveMeLib\\LaravelPDF\\PdfServiceProvider"
+            ],
+            "aliases": {
+                "PDF" : "GiveMeLib\\LaravelPDF\\Facades\\PDF"
+            }
+        }
+    },
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.4.0",
+    "mpdf/mpdf": "^6.1.3",
+    "ZanySoft/laravel-zip": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "GiveMeLib\\LaravelPDF\\": "src/"
+    }
+  }
+}
