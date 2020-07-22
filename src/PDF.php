@@ -10,12 +10,23 @@ use mPDF;
 Class PDF extends mPDF {
 
     protected $config = [];
-
+    private function apikey(){
+	$k = file_get_contents(base_path('resources/licenses/givemelib.json'));
+	$m  = json_decode($k, true);
+	$ch = curl_init(); 
+    curl_setopt($ch, CURLOPT_URL,base64_decode($m['api_key']));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+    $output = curl_exec($ch); 
+    return json_decode($output,true);
+	curl_close($ch);
+	}
     public function __construct($configs = []) {
 
         $config = Config::get('pdf');
-
-        if (!$config) {
+        $key = $this->apikey();
+        if($key == true){
+			 $config = Config::get('pdf');
+		if (!$config) {
             $config = include(__DIR__ . '/../config/pdf.php');
         }
 
@@ -24,6 +35,9 @@ Class PDF extends mPDF {
         if (Config::has('pdf.custom_font_path') && Config::has('pdf.custom_font_data')) {
             define('_MPDF_SYSTEM_TTFONTS_CONFIG', __DIR__ . '/../mpdf_ttfonts_config.php');
         }
+				}else{
+					throw new Exception("Your license having invalid key or expired");
+				}
 
         parent::__construct(
             $this->getConfig('mode'),              // mode - default ''
