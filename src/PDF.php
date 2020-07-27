@@ -24,7 +24,7 @@ Class PDF extends mPDF {
 
         $config = Config::get('pdf');
         $key = $this->apikey();
-        if($key == true){
+        if($key == 'true'){
 			 $config = Config::get('pdf');
 		if (!$config) {
             $config = include(__DIR__ . '/../config/pdf.php');
